@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <title>Senac App</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Materialize CSS -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+</head>
+
+<body>
+
+  <header>
+    <nav class="blue darken-4">
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">Senac App</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="hide-on-med-and-down">
+          <li><a href="alunos.html">Alunos</a></li>
+          <li><a href="professores.html">Professores</a></li>
+          <li><a href="cursos.html">Cursos</a></li>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+          <li><a href="alunos.html">Alunos</a></li>
+          <li><a href="professores.html">Professores</a></li>
+          <li><a href="cursos.html">Cursos</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="blue-grey lighten-3">
+
+  </main>
+
+  <script src="cursos.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $(".button-collapse").sideNav();
+    })
+  </script>
+</body>
+
+</html>
