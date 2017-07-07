@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <title>Senac App</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Materialize CSS -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+</head>
+
+<body>
+
+  <header>
+    <nav class="blue darken-4">
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">Senac App</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="hide-on-med-and-down">
+          <li><a href="alunos.html">Alunos</a></li>
+          <li><a href="professores.html">Professores</a></li>
+          <li><a href="cursos.html">Cursos</a></li>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+          <li><a href="alunos.html">Alunos</a></li>
+          <li><a href="professores.html">Professores</a></li>
+          <li><a href="cursos.html">Cursos</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="blue-grey lighten-3">
+
+    <section class="container section">
+      <div class="card-panel">
+
+        <div class="row">
+          <h5 class="center-align">Lista de Alunos</h5>
+          <div class="divider"></div>
+        </div>
+
+        <table class="centered highlight">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Idade</th>
+              <th>Profissão</th>
+              <th> - </th>
+            </tr>
+          </thead>
+
+          <tbody id="corpoTabela">
+            <tr>
+              <td>Jefferson</td>
+              <td>28</td>
+              <td>Desenvolvedor</td>
+              <td class="operacoes">
+                <a onclick="editarRegistro(this);" class="btn-floating waves-effect waves-light blue"><i class="material-icons">create</i></a>
+                <a onclick="removerRegistro(this);" class="btn-floating waves-effect waves-light red"><i class="material-icons">delete</i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="container section">
+      <div class="card-panel">
+
+        <div class="row">
+          <h5 class="center-align">Cadastro Aluno</h5>
+          <div class="divider"></div>
+        </div>
+
+        <div class="row">
+          <form id="formularioAluno" class="col s12">
+
+            <div class="row">
+              <div class="input-field col s10">
+
+                <input id="nome" type="text" class="validate">
+                <label for="nome">Nome</label>
+              </div>
+
+              <div class="input-field col s2">
+
+                <input id="idade" type="number" class="validate">
+                <label for="idade">Idade</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+
+                <input id="profissao" type="text" class="validate">
+                <label for="profissao">Profissão</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field right">
+                <a id="incluirBtn" class="btn waves-effect waves-light orange"><i class="material-icons right">check</i>incluir</a>
+                <a id="alterarBtn" class="btn waves-effect waves-light orange hide"><i class="material-icons right">check</i>alterar</a>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="alunos.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $(".button-collapse").sideNav();
+    })
+  </script>
+</body>
+
+</html>
