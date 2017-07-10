@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/additional-methods.min.js"></script>-->
 </head>
 
 <body class="blue-grey lighten-3">
@@ -46,7 +48,7 @@
 
         <div class="row">
           <form>
-            <table class="centered highlight">
+            <table class="centered highlight responsive-table">
 
               <thead>
                 <tr>
@@ -96,7 +98,7 @@
         <div class="divider"></div>
 
         <div class="row">
-          <form class="col s12">
+          <form id="cadastroProfessor" class="col s12">
 
             <div class="row">
               <div class="input-field col s12">
@@ -114,9 +116,9 @@
 
               <div class="input-field col s8">
                 <p>
-                  <input class="with-gap" name="genero" type="radio" id="masculino" />
+                  <input class="with-gap" name="genero" type="radio" id="masculino" value="masculino" />
                   <label for="masculino">Masculino</label>
-                  <input class="with-gap" name="genero" type="radio" id="feminino" />
+                  <input class="with-gap" name="genero" type="radio" id="feminino" value="feminino" />
                   <label for="feminino">Feminino</label>
                 </p>
               </div>
@@ -125,7 +127,7 @@
             <div class="row">
 
               <div class="input-field col s6">
-                <select>
+                <select id="formacao">
                   <option value="" disabled selected>Selecione</option>
                   <option value="1">Fundamental</option>
                   <option value="2">Ensino Médio</option>
@@ -138,7 +140,7 @@
               </div>
 
               <div class="input-field col s6">
-                <select>
+                <select id="areaAtuacao">
                   <option value="" disabled selected>Selecione</option>
                   <option value="1">Arquitetura e Urbanismo</option>
                   <option value="2">Beleza e Estética</option>
@@ -177,7 +179,7 @@
 
       <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">cancelar</a>
-        <a class="waves-effect waves-light btn green">salvar</a>
+        <a id="salvarBtn" class="waves-effect waves-light btn green">salvar</a>
       </div>
     </div>
 
@@ -185,18 +187,6 @@
 
   <script src="professores.js"></script>
 
-  <script>
-    $(document).ready(function () {
-
-      $(".button-collapse").sideNav();
-      $('.modal').modal();
-      $('select').material_select();
-      $('.datepicker').pickadate({
-        selectMonths: true,
-        selectYears: 3
-      });
-    })
-  </script>
 </body>
 
 </html>
