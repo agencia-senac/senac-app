@@ -24,9 +24,14 @@ $("#salvarBtn").click(function () {
     var valido = validar(professor);
 
     if (valido) {
-        //adicionar na tabela
+
+        adicionarProfessorNaTabela(professor);
+        Materialize.toast("Professor cadastrado!", 5000);
+        $("#modalAdicionar").modal("close");
+        $("#cadastroProfessor").trigger("reset");
     } else {
-        //mensagem de erro
+
+        Materialize.toast("Preencha os campos obrigatórios!", 5000);
     }
 });
 
@@ -43,4 +48,18 @@ function validar(professor) {
     } else {
         return false;
     }
+}
+
+function adicionarProfessorNaTabela(professor) {
+
+    $("#corpoTabela").append("<tr>" + 
+                                "<td></td>" +
+                                "<td>" + professor.nome + "</td>" +
+                                "<td>" + professor.idade + "</td>" +
+                                "<td>" + professor.genero + "</td>" +
+                                "<td>" + professor.formacao + "</td>" +
+                                "<td>" + professor.areaAtuacao + "</td>" +
+                                "<td>" + professor.disponibilidadeInicio + "</td>" +
+                                "<td>" + professor.disponibilidadeFim + "</td>" +
+                             "</tr>");
 }
