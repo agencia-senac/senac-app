@@ -50,16 +50,37 @@ function validar(professor) {
     }
 }
 
+var contador = 1;
+
 function adicionarProfessorNaTabela(professor) {
 
-    $("#corpoTabela").append("<tr>" + 
-                                "<td></td>" +
-                                "<td>" + professor.nome + "</td>" +
-                                "<td>" + professor.idade + "</td>" +
-                                "<td>" + professor.genero + "</td>" +
-                                "<td>" + professor.formacao + "</td>" +
-                                "<td>" + professor.areaAtuacao + "</td>" +
-                                "<td>" + professor.disponibilidadeInicio + "</td>" +
-                                "<td>" + professor.disponibilidadeFim + "</td>" +
-                             "</tr>");
+    contador++;
+    var idValue = "row" + contador;
+
+    $("#corpoTabela").append("<tr>" +
+        "<td>" +
+        "<input type='radio' name='edicao' id='" + idValue + "' value='" + idValue + "'>" +
+        "<label for='" + idValue + "'></label>" +
+        "</td>" +
+        "<td>" + professor.nome + "</td>" +
+        "<td>" + professor.idade + "</td>" +
+        "<td>" + professor.genero + "</td>" +
+        "<td>" + professor.formacao + "</td>" +
+        "<td>" + professor.areaAtuacao + "</td>" +
+        "<td>" + professor.disponibilidadeInicio + "</td>" +
+        "<td>" + professor.disponibilidadeFim + "</td>" +
+        "</tr>");
 }
+
+$("#removerBtn").click(function () {
+
+    var selecionado = $("input[name=edicao]:checked");
+
+    if (selecionado.val()) {
+        //logica pra remover
+        selecionado.parent().parent().remove();
+        Materialize.toast("Removido com sucesso!", 5000);
+    } else {
+        Materialize.toast("Selecione um registro para remover!", 5000);
+    }
+});
