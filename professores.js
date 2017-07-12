@@ -7,6 +7,8 @@ $(document).ready(function () {
         selectMonths: true,
         selectYears: 3
     });
+
+    inicializarDados();
 });
 
 $("#salvarBtn").click(function () {
@@ -50,7 +52,7 @@ function validar(professor) {
     }
 }
 
-var contador = 1;
+var contador = 0;
 
 function adicionarProfessorNaTabela(professor) {
 
@@ -84,3 +86,13 @@ $("#removerBtn").click(function () {
         Materialize.toast("Selecione um registro para remover!", 5000);
     }
 });
+
+function inicializarDados() {
+
+    var listaProfessores = JSON.parse(dados);
+
+    listaProfessores.forEach(function (professor) {
+
+        adicionarProfessorNaTabela(professor);
+    });
+}
