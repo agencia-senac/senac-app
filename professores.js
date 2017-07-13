@@ -89,10 +89,14 @@ $("#removerBtn").click(function () {
 
 function inicializarDados() {
 
-    var listaProfessores = JSON.parse(dados);
+    $.get("http://localhost:3000/professor", function (dados) {
 
-    listaProfessores.forEach(function (professor) {
+        var listaProfessores = JSON.parse(dados);
 
-        adicionarProfessorNaTabela(professor);
+        listaProfessores.forEach(function (professor) {
+
+            adicionarProfessorNaTabela(professor);
+        });
     });
+
 }
