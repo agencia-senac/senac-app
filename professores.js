@@ -91,12 +91,16 @@ function inicializarDados() {
 
     $.get("http://localhost:3000/professor", function (dados) {
 
-        var listaProfessores = JSON.parse(dados);
+        var listaProfessores = dados;
 
         listaProfessores.forEach(function (professor) {
 
             adicionarProfessorNaTabela(professor);
         });
+
+        $("div.loading").hide();
     });
+
+    $("div.loading").show();
 
 }
