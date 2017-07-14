@@ -28,6 +28,19 @@ $("#salvarBtn").click(function () {
     if (valido) {
 
         adicionarProfessorNaTabela(professor);
+        //chamar o back-end
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:3000/professor",
+            data: JSON.stringify(professor),
+            success: function (dados, status) {
+                console.log(dados);
+                console.log(status);
+            },
+            contentType: "application/json",
+            dataType: "json"
+        });
+
         Materialize.toast("Professor cadastrado!", 5000);
         $("#modalAdicionar").modal("close");
         $("#cadastroProfessor").trigger("reset");
@@ -98,9 +111,6 @@ function inicializarDados() {
             adicionarProfessorNaTabela(professor);
         });
 
-        $("div.loading").hide();
     });
-
-    $("div.loading").show();
 
 }
