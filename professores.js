@@ -11,7 +11,14 @@ $(document).ready(function () {
     inicializarDados();
 });
 
-$("#salvarBtn").click(function () {
+$(window).load(function () {
+    
+    $(".loading").fadeOut("slow");
+})
+
+$("#salvarBtn").click(function (event) {
+
+    event.preventDefault();
 
     var professor = {
         nome: $("#nome").val().trim(),
@@ -27,23 +34,26 @@ $("#salvarBtn").click(function () {
 
     if (valido) {
 
-        adicionarProfessorNaTabela(professor);
         //chamar o back-end
         $.ajax({
             type: "POST",
             url: "http://localhost:3000/professor",
             data: JSON.stringify(professor),
-            success: function (dados, status) {
-                console.log(dados);
-                console.log(status);
-            },
             contentType: "application/json",
-            dataType: "json"
+            dataType: "text",
+            success: function () {
+
+                adicionarProfessorNaTabela(professor);
+                Materialize.toast("Professor cadastrado!", 5000);
+                $("#modalAdicionar").modal("close");
+                $("#cadastroProfessor").trigger("reset");
+            },
+            error: function () {
+
+                Materialize.toast("Ocorreu um erro ao tentar salvar. Tente novamente mais tarde.", 5000);
+            }
         });
 
-        Materialize.toast("Professor cadastrado!", 5000);
-        $("#modalAdicionar").modal("close");
-        $("#cadastroProfessor").trigger("reset");
     } else {
 
         Materialize.toast("Preencha os campos obrigatórios!", 5000);
@@ -111,6 +121,7 @@ function inicializarDados() {
             adicionarProfessorNaTabela(professor);
         });
 
+        $(".loading").fadeOut("slow");
     });
 
 }
