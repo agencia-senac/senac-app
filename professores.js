@@ -1,3 +1,8 @@
+$(window).load(function () {
+
+    $(".loading").fadeOut("slow");
+});
+
 $(document).ready(function () {
 
     $(".button-collapse").sideNav();
@@ -11,14 +16,11 @@ $(document).ready(function () {
     inicializarDados();
 });
 
-$(window).load(function () {
-    
-    $(".loading").fadeOut("slow");
-})
-
 $("#salvarBtn").click(function (event) {
 
     event.preventDefault();
+
+    $(".loading").fadeIn();
 
     var professor = {
         nome: $("#nome").val().trim(),
@@ -41,15 +43,17 @@ $("#salvarBtn").click(function (event) {
             data: JSON.stringify(professor),
             contentType: "application/json",
             dataType: "text",
-            success: function () {
+            success: function (professorSalvo) {
 
-                adicionarProfessorNaTabela(professor);
-                Materialize.toast("Professor cadastrado!", 5000);
+                adicionarProfessorNaTabela(JSON.parse(professorSalvo));
                 $("#modalAdicionar").modal("close");
                 $("#cadastroProfessor").trigger("reset");
+                $(".loading").fadeOut("slow");
+                Materialize.toast("Professor cadastrado!", 5000);
             },
             error: function () {
 
+                $(".loading").fadeOut("slow");
                 Materialize.toast("Ocorreu um erro ao tentar salvar. Tente novamente mais tarde.", 5000);
             }
         });
@@ -75,12 +79,9 @@ function validar(professor) {
     }
 }
 
-var contador = 0;
-
 function adicionarProfessorNaTabela(professor) {
 
-    contador++;
-    var idValue = "row" + contador;
+    var idValue = "row-" + professor.id;
 
     $("#corpoTabela").append("<tr>" +
         "<td>" +
@@ -103,6 +104,10 @@ $("#removerBtn").click(function () {
 
     if (selecionado.val()) {
         //logica pra remover
+        //chamar o back-end
+        var id = selecionado.attr("id");
+        id = id.substring(4);
+        
         selecionado.parent().parent().remove();
         Materialize.toast("Removido com sucesso!", 5000);
     } else {
