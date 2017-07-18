@@ -107,9 +107,20 @@ $("#removerBtn").click(function () {
         //chamar o back-end
         var id = selecionado.attr("id");
         id = id.substring(4);
-        
-        selecionado.parent().parent().remove();
-        Materialize.toast("Removido com sucesso!", 5000);
+
+        $.ajax({
+            type: 'DELETE',
+            url: 'http://localhost:3000/professor/' + id,
+            success: function () {
+
+                selecionado.parent().parent().remove();
+                Materialize.toast("Removido com sucesso!", 5000);
+            },
+            error: function () {
+
+                Materialize.toast("Ocorreu um erro ao tentar excluir o professor. Tente novamente mais tarde.", 5000);
+            }
+        });
     } else {
         Materialize.toast("Selecione um registro para remover!", 5000);
     }
