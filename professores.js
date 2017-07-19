@@ -100,6 +100,8 @@ function adicionarProfessorNaTabela(professor) {
 
 $("#removerBtn").click(function () {
 
+    $('.loading').fadeIn();
+
     var selecionado = $("input[name=edicao]:checked");
 
     if (selecionado.val()) {
@@ -115,10 +117,12 @@ $("#removerBtn").click(function () {
 
                 selecionado.parent().parent().remove();
                 Materialize.toast("Removido com sucesso!", 5000);
+                $('.loading').fadeOut('slow');
             },
             error: function () {
 
                 Materialize.toast("Ocorreu um erro ao tentar excluir o professor. Tente novamente mais tarde.", 5000);
+                $('.loading').fadeOut('slow');
             }
         });
     } else {
